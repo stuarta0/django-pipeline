@@ -8,8 +8,8 @@ try:
 except ImportError:
     from urllib import quote
 
-from django.utils import importlib
 from django.utils.encoding import smart_str
+from django.utils.module_loading import import_string
 
 from pipeline.conf import settings
 
@@ -17,11 +17,8 @@ from pipeline.conf import settings
 def to_class(class_str):
     if not class_str:
         return None
-
-    module_bits = class_str.split('.')
-    module_path, class_name = '.'.join(module_bits[:-1]), module_bits[-1]
-    module = importlib.import_module(module_path)
-    return getattr(module, class_name, None)
+    
+    return import_string(class_str)
 
 
 def filepath_to_uri(path):
