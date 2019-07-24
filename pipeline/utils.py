@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 import mimetypes
 import posixpath
@@ -6,7 +6,7 @@ import posixpath
 try:
     from urllib.parse import quote
 except ImportError:
-    from urllib import quote
+    from urllib.parse import quote
 
 from django.utils.encoding import smart_str
 from django.utils.module_loading import import_string

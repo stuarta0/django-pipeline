@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 import gzip
 
@@ -132,7 +132,7 @@ class BaseFinderStorage(PipelineStorage):
         directories, files = [], []
         for finder in self.finders.get_finders():
             try:
-                storages = finder.storages.values()
+                storages = list(finder.storages.values())
             except AttributeError:
                 continue
             else:
@@ -150,7 +150,7 @@ class BaseFinderStorage(PipelineStorage):
         for finder in self.finders.get_finders():
             path = finder.find(name)
             if path:
-                for storage in finder.storages.values():
+                for storage in list(finder.storages.values()):
                     if path.startswith(storage.location):
                         return path, storage
 

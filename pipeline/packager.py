@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from django.contrib.staticfiles.finders import find
 from django.core.files.base import ContentFile
@@ -99,7 +99,7 @@ class Packager(object):
     def pack(self, package, compress, signal, **kwargs):
         output_filename = package.output_filename
         if self.verbose:
-            print("Saving: %s" % output_filename)
+            print(("Saving: %s" % output_filename))
         paths = self.compile(package.paths, force=True)
         content = compress(paths, **kwargs)
         self.save_file(output_filename, content)
